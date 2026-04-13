@@ -1,2 +1,91 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+:root {
+  --primary-neon: #E7FE29;
+  --secondary-glow: rgba(231, 254, 41, 0.4);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #030712;
+  color: #f3f4f6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Glassmorphism Classes */
+.glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-card {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--primary-neon);
+  box-shadow: 0 0 20px rgba(231, 254, 41, 0.1);
+  transform: translateY(-4px);
+}
+
+/* Premium Buttons */
+.btn-premium {
+  @apply bg-[#E7FE29] text-black font-bold px-6 py-3 rounded-xl transition-all duration-300;
+  box-shadow: 0 0 15px var(--secondary-glow);
+}
+
+.btn-premium:hover {
+  @apply bg-white scale-105;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-neon {
+  0% { box-shadow: 0 0 5px var(--secondary-glow); }
+  50% { box-shadow: 0 0 20px var(--secondary-glow); }
+  100% { box-shadow: 0 0 5px var(--secondary-glow); }
+}
+
+.glow-neon {
+  animation: pulse-neon 2s infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-neon);
+}
