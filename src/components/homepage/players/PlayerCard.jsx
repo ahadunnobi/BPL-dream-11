@@ -1,17 +1,29 @@
-import React from 'react';
-import { FaUser, FaFlag, FaStar } from 'react-icons/fa';
+"use client";
 
-const PlayerCard = ({ player, handleSelectPlayer }) => {
+import React from 'react';
+import Image from 'next/image';
+import { FaFlag, FaStar } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+
+const PlayerCard = ({ player, onSelect }) => {
   const { playerName, playerCountry, playerImg, playerType, rating, battingStyle, bowlingStyle, price } = player;
 
   return (
-    <div className="glass-card rounded-[20px] p-5 flex flex-col group">
+    <motion.div 
+      layout
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      whileHover={{ y: -5 }}
+      className="glass-card rounded-[20px] p-5 flex flex-col group"
+    >
       {/* Player Image container */}
       <div className="relative h-64 w-full mb-6 rounded-xl overflow-hidden">
-        <img 
+        <Image 
           src={playerImg} 
           alt={playerName} 
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
           <span className="text-white text-xs font-semibold uppercase tracking-wider bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
@@ -48,7 +60,7 @@ const PlayerCard = ({ player, handleSelectPlayer }) => {
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-gray-500">Bowling</span>
-          <span className="text-gray-300 font-medium">{bowlingStyle === 'N/A' ? 'None' : bowlingStyle}</span>
+          <span className="text-gray-300 font-medium">{bowlingStyle === 'N/A' || bowlingStyle === 'None' ? 'None' : bowlingStyle}</span>
         </div>
       </div>
 
@@ -59,13 +71,13 @@ const PlayerCard = ({ player, handleSelectPlayer }) => {
           <span className="text-lg font-bold text-white">${price.toLocaleString()}</span>
         </div>
         <button 
-          onClick={() => handleSelectPlayer(player)}
+          onClick={() => onSelect(player)}
           className="px-5 py-2.5 bg-transparent border border-[#E7FE29] text-[#E7FE29] rounded-xl text-sm font-bold transition-all hover:bg-[#E7FE29] hover:text-black hover:shadow-[0_0_15px_rgba(231,254,41,0.3)]"
         >
           Choose Player
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

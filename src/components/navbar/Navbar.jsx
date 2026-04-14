@@ -1,14 +1,24 @@
-import React from 'react';
-import logo from '../../assets/logo.png';
-import coinIcon from '../../assets/dollar_1.png';
+"use client";
 
-const Navbar = ({ coin }) => {
+import React from 'react';
+import Image from 'next/image';
+import { useCoin } from '@/context/CoinContext';
+
+const Navbar = () => {
+  const { coin } = useCoin();
+
   return (
     <nav className="sticky top-0 z-50 glass-effect border-b border-white/5 py-4">
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <img src={logo} alt="BPL Logo" className="w-12 h-12 object-contain" />
+          <Image 
+            src="/logo.png" 
+            alt="BPL Logo" 
+            width={48} 
+            height={48} 
+            className="object-contain"
+          />
           <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-[#E7FE29]">
             BPL Dream 11
           </span>
@@ -27,7 +37,13 @@ const Navbar = ({ coin }) => {
           <div className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl glow-neon">
             <span className="font-bold text-[#E7FE29]">{coin.toLocaleString()}</span>
             <span className="text-gray-400 text-sm font-semibold">Coin</span>
-            <img src={coinIcon} alt="Coin" className="w-5 h-5 ml-1" />
+            <Image 
+              src="/dollar_1.png" 
+              alt="Coin" 
+              width={20} 
+              height={20} 
+              className="ml-1"
+            />
           </div>
         </div>
       </div>

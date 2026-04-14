@@ -1,14 +1,14 @@
 import React from 'react';
-import bannerImage from '../../../assets/banner-main.png';
-import bgShadow from '../../../assets/bg-shadow.png';
+import Image from 'next/image';
+import ClaimButton from './ClaimButton';
 
-const Banner = ({ handleAddCoin }) => {
+const Banner = () => {
   return (
     <div className="container mx-auto px-6 mt-8">
       <div 
         className="relative overflow-hidden rounded-[24px] bg-[#030712] border border-white/5 py-16 md:py-24"
         style={{
-          backgroundImage: `url(${bgShadow}), radial-gradient(circle at top right, rgba(231, 254, 41, 0.05), transparent)`,
+          backgroundImage: `url(/bg-shadow.png)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
@@ -20,10 +20,12 @@ const Banner = ({ handleAddCoin }) => {
         <div className="relative flex flex-col items-center text-center max-w-4xl mx-auto px-6">
           {/* Main Illustration */}
           <div className="mb-10 animate-float">
-            <img 
-              src={bannerImage} 
+            <Image 
+              src="/banner-main.png" 
               alt="Cricket Equipment" 
-              className="w-48 h-auto drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+              width={192} 
+              height={192} 
+              className="drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]"
             />
           </div>
 
@@ -37,14 +39,8 @@ const Banner = ({ handleAddCoin }) => {
             Beyond Boundaries Beyond Limits. Join the most advanced fantasy cricket league and dominate the pitch.
           </p>
 
-          {/* CTA Button */}
-          <button 
-            onClick={handleAddCoin}
-            className="btn-premium group relative overflow-hidden"
-          >
-            <span className="relative z-10">Claim Free Credit</span>
-            <div className="absolute inset-0 bg-white/20 translate-y-full transition-transform duration-300 group-hover:translate-y-0"></div>
-          </button>
+          {/* CTA Button (Client Component) */}
+          <ClaimButton />
         </div>
       </div>
     </div>

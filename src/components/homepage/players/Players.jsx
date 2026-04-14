@@ -1,17 +1,23 @@
-import React, { use, useState } from "react";
+"use client";
+
+import React, { useState } from "react";
 import AvailablePlayers from "./AvailablePlayers/AvailablePlayers";
 import SelectedPlayers from "./SelectedPlayers/SelectedPlayers";
+import { useCoin } from "@/context/CoinContext";
+import { motion, AnimatePresence } from "framer-motion";
 
-const Players = ({ playersPromise, setCoin, coin }) => {
-  const players = use(playersPromise);
+const Players = ({ initialPlayers }) => {
   const [selectedType, setSelectedType] = useState("available");
-  const [selectedPlayers, setSelectedPlayers] = useState([]);
+  const { selectedPlayers } = useCoin();
 
   return (
     <div className="container mx-auto px-6 my-20">
       {/* Tab Switcher Header */}
       <div className="flex flex-col md:flex-row justify-between gap-6 items-center mb-10">
-        <div>
+        <motion.div
+           initial={{ opacity: 0, x: -20 }}
+           animate={{ opacity: 1, x: 0 }}
+        >
           {selectedType === "available" ? (
             <h2 className="font-bold text-3xl text-white font-heading">Available Players</h2>
           ) : (
@@ -20,11 +26,11 @@ const Players = ({ playersPromise, setCoin, coin }) => {
                 Selected Players
               </h2>
               <span className="text-gray-500 text-sm mt-1">
-                Your squad: {selectedPlayers.length} / {players.length} players
+                Your squad: {selectedPlayers.length} / {initialPlayers.length} players
               </span>
             </div>
           )}
-        </div>
+        </motion.div>
 
         {/* Custom Tabs */}
         <div className="flex p-1 bg-white/5 border border-white/10 rounded-2xl">
@@ -51,23 +57,33 @@ const Players = ({ playersPromise, setCoin, coin }) => {
         </div>
       </div>
 
-      {/* Content Area */}
+      {/* Content Area with Framer Motion transitions */}
       <div className="min-h-[400px]">
-        {selectedType === "available" ? (
-          <AvailablePlayers
-            players={players}
-            setCoin={setCoin}
-            coin={coin}
-            setSelectedPlayers={setSelectedPlayers}
-            selectedPlayers={selectedPlayers}
-          />
-        ) : (
-          <SelectedPlayers
-            selectedPlayers={selectedPlayers}
-            setSelectedPlayers={setSelectedPlayers}
-            toggleToAvailable={() => setSelectedType("available")}
-          />
-        )}
+        <AnimatePresence mode="wait">
+          {selectedType === "available" ? (
+            <motion.div
+              key="available"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <AvailablePlayers players={initialPlayers} />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="selected"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <SelectedPlayers
+                toggleToAvailable={() => setSelectedType("available")}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

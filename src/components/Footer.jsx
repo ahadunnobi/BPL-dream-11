@@ -1,5 +1,5 @@
 import React from 'react';
-import footerLogo from '../assets/logo-footer.png';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
@@ -7,7 +7,13 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         {/* Footer Top */}
         <div className="flex flex-col items-center mb-16">
-          <img src={footerLogo} alt="Footer Logo" className="w-40 h-auto mb-12 animate-float" />
+          <Image 
+            src="/logo-footer.png" 
+            alt="Footer Logo" 
+            width={160} 
+            height={160} 
+            className="mb-12 animate-float object-contain" 
+          />
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-6xl">
             {/* About Us */}
@@ -48,7 +54,7 @@ const Footer = () => {
         {/* Footer Bottom */}
         <div className="border-t border-white/5 pt-10 text-center">
           <p className="text-gray-500 text-sm">
-            ©2024 Your Company All Rights Reserved.
+            ©2024 BPL Dream 11 All Rights Reserved.
           </p>
         </div>
       </div>
