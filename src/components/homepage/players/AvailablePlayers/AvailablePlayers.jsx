@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import PlayerCard from './PlayerCard';
+import PlayerCard from '../PlayerCard';
 import { useCoin } from '@/context/CoinContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
