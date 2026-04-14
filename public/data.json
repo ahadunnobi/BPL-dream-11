@@ -1,35 +1,39 @@
 [
   {
+    "playerId": "p-001",
     "playerName": "Virat Kohli",
     "playerCountry": "India",
     "playerType": "Batsman",
     "rating": 9.8,
     "battingStyle": "Right-hand bat",
     "bowlingStyle": "Right-arm medium",
-    "price": 500,
+    "price": 1500000,
     "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
   },
   {
+    "playerId": "p-002",
     "playerName": "Babar Azam",
     "playerCountry": "Pakistan",
     "playerType": "Batsman",
     "rating": 9.5,
     "battingStyle": "Right-hand bat",
     "bowlingStyle": "Right-arm offbreak",
-    "price": 1500,
+    "price": 1400000,
     "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
   },
   {
+    "playerId": "p-003",
     "playerName": "Ben Stokes",
     "playerCountry": "England",
     "playerType": "All-Rounder",
     "rating": 9.3,
     "battingStyle": "Left-hand bat",
     "bowlingStyle": "Right-arm fast-medium",
-    "price": 2500,
+    "price": 1200000,
     "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
   },
   {
+    "playerId": "p-004",
     "playerName": "Kane Williamson",
     "playerCountry": "New Zealand",
     "playerType": "Batsman",
@@ -40,6 +44,7 @@
     "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
   },
   {
+    "playerId": "p-005",
     "playerName": "Rashid Khan",
     "playerCountry": "Afghanistan",
     "playerType": "Bowler",
@@ -50,6 +55,7 @@
     "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
   },
   {
+    "playerId": "p-006",
     "playerName": "Jos Buttler",
     "playerCountry": "England",
     "playerType": "Wicketkeeper-Batsman",

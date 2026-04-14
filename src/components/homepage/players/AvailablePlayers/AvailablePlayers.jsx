@@ -16,7 +16,7 @@ const AvailablePlayers = ({ players }) => {
       <AnimatePresence mode="popLayout">
         {players.map((player) => (
           <PlayerCard 
-            key={player.playerName} 
+            key={player.playerId} 
             player={player} 
             onSelect={selectPlayer} 
           />

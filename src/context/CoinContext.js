@@ -32,7 +32,7 @@ export const CoinProvider = ({ children }) => {
   };
 
   const selectPlayer = (player) => {
-    if (selectedPlayers.find(p => p.playerName === player.playerName)) {
+    if (selectedPlayers.find(p => p.playerId === player.playerId)) {
       toast.warning(`${player.playerName} is already in your Dream 11!`, {
         position: "top-center",
         theme: "dark"
@@ -40,8 +40,8 @@ export const CoinProvider = ({ children }) => {
       return false;
     }
 
-    if (selectedPlayers.length >= 6) {
-      toast.error("Squad Full! You can only select up to 6 players.", {
+    if (selectedPlayers.length >= 11) {
+      toast.error("Squad Full! You can only select up to 11 players.", {
         position: "top-center",
         theme: "dark"
       });
@@ -66,7 +66,12 @@ export const CoinProvider = ({ children }) => {
   };
 
   const removePlayer = (player) => {
-    setSelectedPlayers(prev => prev.filter(p => p.playerName !== player.playerName));
+    setCoin(prev => prev + player.price);
+    setSelectedPlayers(prev => prev.filter(p => p.playerId !== player.playerId));
+    toast.info(`${player.playerName} has been removed. Credits refunded.`, {
+      position: "top-center",
+      theme: "dark"
+    });
   };
 
   return (
